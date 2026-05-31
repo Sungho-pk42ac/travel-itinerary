@@ -300,9 +300,63 @@ body {
   .h2 { font-size: clamp(24px, 7vw, 34px); }
 }
 
+/* =========================================================
+   PWA · 인터랙션 강화 (세이프에어리어 · 리빌 · 리플 · 시차 · 막대)
+   ========================================================= */
+
+/* iOS 노치/홈인디케이터 안전영역 + 탭 하이라이트 제거 */
+.topbar { padding-top: max(18px, env(safe-area-inset-top)); }
+.nav { bottom: max(24px, calc(env(safe-area-inset-bottom) + 10px)); }
+button, a, .slide, .card { -webkit-tap-highlight-color: transparent; }
+.deck { overscroll-behavior-y: contain; }   /* 당겨서 새로고침 시 튐 방지 */
+
+/* 스크롤 리빌: 활성 슬라이드 자식 순차 등장 (JS 있을 때만 숨김) */
+body.js-ready .r-item { opacity: 0; transform: translateY(22px); }
+body.js-ready .r-item.in {
+  opacity: 1; transform: none;
+  transition: opacity .55s cubic-bezier(.22, .61, .36, 1),
+              transform .55s cubic-bezier(.22, .61, .36, 1);
+}
+
+/* 시차(parallax) 대상은 인라인 transform으로 제어 */
+.slide__bg { will-change: transform; }
+
+/* 예산 막대: 슬라이드 진입 시 0 → 목표폭으로 차오름 */
+.bar__fill { width: 0; }
+.slide.is-active .bar__fill { width: var(--w); }
+
+/* 탭 리플 */
+.ripple { position: relative; overflow: hidden; }
+.rip {
+  position: absolute; border-radius: 50%; transform: scale(0); pointer-events: none;
+  background: rgba(255, 255, 255, .55); animation: rip .6s ease-out forwards;
+}
+.card .rip { background: rgba(201, 120, 91, .25); }
+@keyframes rip { to { transform: scale(2.6); opacity: 0; } }
+
+/* 탭 피드백 */
+.nav__btn:active { transform: scale(.88); }
+.dots button:active { transform: scale(1.5); }
+.card { transition: transform .25s ease, box-shadow .25s ease; }
+.card:active { transform: translateY(2px) scale(.99); }
+
+/* 스와이프 힌트 토스트 */
+.swipe-hint {
+  position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%);
+  z-index: 58; display: flex; align-items: center; gap: 6px;
+  background: rgba(43, 42, 40, .82); color: #fff; padding: 9px 16px; border-radius: 22px;
+  font-size: 13px; letter-spacing: .02em; pointer-events: none;
+  backdrop-filter: blur(6px); opacity: 0; transition: opacity .4s ease;
+  bottom: max(92px, calc(env(safe-area-inset-bottom) + 78px));
+}
+.swipe-hint.show { opacity: 1; animation: hintbob 1.5s ease-in-out infinite; }
+@keyframes hintbob { 50% { transform: translateX(-50%) translateY(-6px); } }
+
 /* 모션 최소화 선호 사용자 */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
   .deck { scroll-behavior: auto; }
   .slide > * { opacity: 1; transform: none; }
+  body.js-ready .r-item { opacity: 1 !important; transform: none !important; }
+  .slide.is-active .bar__fill { transition: none; }
 }

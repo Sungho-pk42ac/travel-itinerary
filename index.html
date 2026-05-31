@@ -2,9 +2,20 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="오사카 3박4일 커플 여행 일정 — 감성 야경·자연·로컬 맛집 중심 슬라이드 가이드" />
   <title>OSAKA · 3박4일 커플 여행 가이드</title>
+
+  <!-- PWA: 홈화면 설치형 앱 -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#c9785b" />
+  <meta name="color-scheme" content="light" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="오사카 여행" />
+  <link rel="apple-touch-icon" href="icons/icon.svg" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
 
   <!-- Google Fonts: 본문 산세리프 + 헤드라인 세리프 -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +38,9 @@
 
     <!-- 1. 표지 -->
     <section class="slide slide--cover" data-title="표지">
-      <img class="slide__bg" alt="오사카 도톤보리 야경" loading="eager"
+      <img class="slide__bg" alt="오사카 도톤보리 야경" loading="eager" decoding="async" fetchpriority="high"
+           sizes="100vw"
+           srcset="https://images.unsplash.com/photo-1590559899731-a382839e5549?w=760&q=70&auto=format&fit=crop 760w, https://images.unsplash.com/photo-1590559899731-a382839e5549?w=1600&q=80&auto=format&fit=crop 1600w"
            src="https://images.unsplash.com/photo-1590559899731-a382839e5549?w=1600&q=80&auto=format&fit=crop" />
       <div class="cover">
         <p class="cover__eyebrow">COUPLE TRAVEL ITINERARY</p>
@@ -71,7 +84,9 @@
 
     <!-- 3. DAY 1 -->
     <section class="slide slide--day" data-title="Day 1">
-      <img class="slide__side" alt="도톤보리 거리"
+      <img class="slide__side" alt="도톤보리 거리" loading="lazy" decoding="async"
+           sizes="(max-width: 600px) 100vw, 42vw"
+           srcset="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=640&q=70&auto=format&fit=crop 640w, https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1200&q=80&auto=format&fit=crop 1200w"
            src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1200&q=80&auto=format&fit=crop" />
       <div class="day">
         <div class="day__head">
@@ -94,7 +109,9 @@
 
     <!-- 4. DAY 2 -->
     <section class="slide slide--day" data-title="Day 2">
-      <img class="slide__side" alt="나라 공원 사슴"
+      <img class="slide__side" alt="나라 공원 사슴" loading="lazy" decoding="async"
+           sizes="(max-width: 600px) 100vw, 42vw"
+           srcset="https://images.unsplash.com/photo-1624601573012-efb68931cc8f?w=640&q=70&auto=format&fit=crop 640w, https://images.unsplash.com/photo-1624601573012-efb68931cc8f?w=1200&q=80&auto=format&fit=crop 1200w"
            src="https://images.unsplash.com/photo-1624601573012-efb68931cc8f?w=1200&q=80&auto=format&fit=crop" />
       <div class="day">
         <div class="day__head">
@@ -118,7 +135,9 @@
 
     <!-- 5. DAY 3 -->
     <section class="slide slide--day" data-title="Day 3">
-      <img class="slide__side" alt="오사카성"
+      <img class="slide__side" alt="오사카성" loading="lazy" decoding="async"
+           sizes="(max-width: 600px) 100vw, 42vw"
+           srcset="https://images.unsplash.com/photo-1590253230532-a67f6bc61b6e?w=640&q=70&auto=format&fit=crop 640w, https://images.unsplash.com/photo-1590253230532-a67f6bc61b6e?w=1200&q=80&auto=format&fit=crop 1200w"
            src="https://images.unsplash.com/photo-1590253230532-a67f6bc61b6e?w=1200&q=80&auto=format&fit=crop" />
       <div class="day">
         <div class="day__head">
@@ -142,7 +161,9 @@
 
     <!-- 6. DAY 4 -->
     <section class="slide slide--day" data-title="Day 4">
-      <img class="slide__side" alt="신세카이 츠텐카쿠"
+      <img class="slide__side" alt="신세카이 츠텐카쿠" loading="lazy" decoding="async"
+           sizes="(max-width: 600px) 100vw, 42vw"
+           srcset="https://images.unsplash.com/photo-1554188248-986adbb73be4?w=640&q=70&auto=format&fit=crop 640w, https://images.unsplash.com/photo-1554188248-986adbb73be4?w=1200&q=80&auto=format&fit=crop 1200w"
            src="https://images.unsplash.com/photo-1554188248-986adbb73be4?w=1200&q=80&auto=format&fit=crop" />
       <div class="day">
         <div class="day__head">
@@ -305,7 +326,9 @@
 
     <!-- 12. 마무리 -->
     <section class="slide slide--cover slide--end" data-title="마무리">
-      <img class="slide__bg" alt="오사카 거리"
+      <img class="slide__bg" alt="오사카 거리" loading="lazy" decoding="async"
+           sizes="100vw"
+           srcset="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=760&q=70&auto=format&fit=crop 760w, https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1600&q=80&auto=format&fit=crop 1600w"
            src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1600&q=80&auto=format&fit=crop" />
       <div class="cover">
         <p class="cover__eyebrow">CHECKLIST</p>
