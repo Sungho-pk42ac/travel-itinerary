@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="오사카 3박4일 커플 여행 일정 — 감성 야경·자연·로컬 맛집 중심 슬라이드 가이드" />
+  <title>OSAKA · 3박4일 커플 여행 가이드</title>
+
+  <!-- Google Fonts: 본문 산세리프 + 헤드라인 세리프 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- 진행 상태바 -->
+  <div class="progress" aria-hidden="true"><span class="progress__bar" id="progressBar"></span></div>
+
+  <!-- 상단 미니 브랜드 -->
+  <header class="topbar">
+    <span class="topbar__brand">OSAKA <em>2026</em></span>
+    <span class="topbar__counter"><span id="slideNow">01</span> / <span id="slideTotal">12</span></span>
+  </header>
+
+  <main class="deck" id="deck">
+
+    <!-- 1. 표지 -->
+    <section class="slide slide--cover" data-title="표지">
+      <img class="slide__bg" alt="오사카 도톤보리 야경" loading="eager"
+           src="https://images.unsplash.com/photo-1590559899731-a382839e5549?w=1600&q=80&auto=format&fit=crop" />
+      <div class="cover">
+        <p class="cover__eyebrow">COUPLE TRAVEL ITINERARY</p>
+        <h1 class="cover__title">오사카<br/>3박 4일</h1>
+        <p class="cover__sub">감성 야경 · 자연 · 로컬 맛집 중심의 여유로운 커플 여행</p>
+        <p class="cover__meta">2026.06.26 (금) — 06.29 (월) · 성인 2명 · 대중교통</p>
+        <p class="cover__hint">→ 방향키 · 스와이프 · 아래 화살표로 넘기세요</p>
+      </div>
+    </section>
+
+    <!-- 2. 전체 동선 요약 -->
+    <section class="slide" data-title="동선 요약">
+      <div class="wrap">
+        <p class="kicker">OVERVIEW</p>
+        <h2 class="h2">전체 동선 한눈에 보기</h2>
+        <p class="lead">베이스캠프는 <strong>난바(Namba)</strong> — 공항 직결, 도톤보리·신사이바시 도보권, 나라·우메다 환승이 모두 편한 중심지입니다.</p>
+        <div class="timeline">
+          <div class="tl">
+            <span class="tl__day">DAY 1</span>
+            <span class="tl__date">6/26 금</span>
+            <p class="tl__desc">도착 · 호리에 감성 카페 · <b>도톤보리 야경</b></p>
+          </div>
+          <div class="tl">
+            <span class="tl__day">DAY 2</span>
+            <span class="tl__date">6/27 토</span>
+            <p class="tl__desc">나라 자연·사슴·감성 거리 · <b>우메다 공중정원 야경</b></p>
+          </div>
+          <div class="tl">
+            <span class="tl__day">DAY 3</span>
+            <span class="tl__date">6/28 일</span>
+            <p class="tl__desc">오사카성 산책 · <b>쇼핑(신사이바시·돈키호테)</b> · 도톤보리 야경</p>
+          </div>
+          <div class="tl">
+            <span class="tl__day">DAY 4</span>
+            <span class="tl__date">6/29 월</span>
+            <p class="tl__desc">신세카이 레트로 산책 · 쿠시카츠 · <b>KIX 출국</b></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. DAY 1 -->
+    <section class="slide slide--day" data-title="Day 1">
+      <img class="slide__side" alt="도톤보리 거리"
+           src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1200&q=80&auto=format&fit=crop" />
+      <div class="day">
+        <div class="day__head">
+          <span class="day__num">DAY 1</span>
+          <div>
+            <h2 class="h2">난바 감성 입문</h2>
+            <p class="day__date">6/26 금 · 도착일 (가볍게)</p>
+          </div>
+        </div>
+        <ul class="plan">
+          <li><span class="plan__t">14:30</span><div><b>난바 숙소 체크인</b><em>난카이 급행 KIX→난바 45분, 짐 풀기</em></div></li>
+          <li><span class="plan__t">15:30</span><div><b>호리에 감성거리 · 카페</b><em>편집숍과 로컬 카페, 사진 산책 ☕</em></div></li>
+          <li><span class="plan__t">17:30</span><div><b>아메리카무라 · 신사이바시</b><em>빈티지·로컬 분위기 거리</em></div></li>
+          <li><span class="plan__t">19:00</span><div><b>도톤보리 야경 · 글리코사인</b><em>오사카 대표 야경 포토존 🌃</em></div></li>
+          <li><span class="plan__t">20:00</span><div><b>저녁: 난바 가성비 이자카야</b><em>오코노미야키/이자카야 · 약 ₩40,000</em></div></li>
+        </ul>
+        <p class="rain"><b>☔ 우천 대체</b> 난바파크스 실내몰·옥상정원, 도톤보리 아케이드, 지하상가 카페 호핑</p>
+      </div>
+    </section>
+
+    <!-- 4. DAY 2 -->
+    <section class="slide slide--day" data-title="Day 2">
+      <img class="slide__side" alt="나라 공원 사슴"
+           src="https://images.unsplash.com/photo-1624601573012-efb68931cc8f?w=1200&q=80&auto=format&fit=crop" />
+      <div class="day">
+        <div class="day__head">
+          <span class="day__num">DAY 2</span>
+          <div>
+            <h2 class="h2">나라 자연 + 우메다 야경</h2>
+            <p class="day__date">6/27 토 · 자연·감성 데이트립</p>
+          </div>
+        </div>
+        <ul class="plan">
+          <li><span class="plan__t">09:00</span><div><b>긴테쓰 난바 → 나라</b><em>급행 40분, 자연·사슴·사진 최적 🦌</em></div></li>
+          <li><span class="plan__t">10:00</span><div><b>나라공원 · 사슴 · 도다이지</b><em>자연경관과 웅장한 대불, 감성 사진</em></div></li>
+          <li><span class="plan__t">12:30</span><div><b>점심: 나라마치 로컬 정식</b><em>현지 가정식·우동 · 약 ₩34,000</em></div></li>
+          <li><span class="plan__t">13:30</span><div><b>나라마치 골목 · 카페</b><em>옛 거리 감성 산책</em></div></li>
+          <li><span class="plan__t">18:00</span><div><b>우메다 공중정원 전망대</b><em>오사카 대표 야경 명소 🌆</em></div></li>
+          <li><span class="plan__t">19:30</span><div><b>저녁: 우메다 로컬 라멘/정식</b><em>약 ₩42,000</em></div></li>
+        </ul>
+        <p class="rain"><b>☔ 우천 대체</b> 나라국립박물관(실내), 우메다 공중정원은 실내 전망 가능, 그랜드프론트·한큐백화점</p>
+      </div>
+    </section>
+
+    <!-- 5. DAY 3 -->
+    <section class="slide slide--day" data-title="Day 3">
+      <img class="slide__side" alt="오사카성"
+           src="https://images.unsplash.com/photo-1590253230532-a67f6bc61b6e?w=1200&q=80&auto=format&fit=crop" />
+      <div class="day">
+        <div class="day__head">
+          <span class="day__num">DAY 3</span>
+          <div>
+            <h2 class="h2">오사카성 + 쇼핑 데이</h2>
+            <p class="day__date">6/28 일 · 산책 + 쇼핑 + 야경</p>
+          </div>
+        </div>
+        <ul class="plan">
+          <li><span class="plan__t">09:30</span><div><b>오사카성 공원 산책</b><em>해자·천수각 자연 사진 🌳</em></div></li>
+          <li><span class="plan__t">11:30</span><div><b>점심: 성 근처 로컬 식당</b><em>카레/덮밥 가성비 · 약 ₩34,000</em></div></li>
+          <li><span class="plan__t">13:00</span><div><b>신사이바시스지 쇼핑</b><em>패션·잡화 메인 아케이드 🛍️</em></div></li>
+          <li><span class="plan__t">15:00</span><div><b>드럭스토어 + 돈키호테</b><em>화장품·기념품·잡화</em></div></li>
+          <li><span class="plan__t">18:00</span><div><b>도톤보리 강변 야경</b><em>에비스바시 커플 야경</em></div></li>
+          <li><span class="plan__t">19:00</span><div><b>저녁: 도톤보리 뒷골목</b><em>쿠시카츠/스시 · 약 ₩44,000</em></div></li>
+        </ul>
+        <p class="rain"><b>☔ 우천 대체</b> 신사이바시·도톤보리는 전구간 아케이드(비 거의 안 맞음), 돈키호테·천수각 내부 관람</p>
+      </div>
+    </section>
+
+    <!-- 6. DAY 4 -->
+    <section class="slide slide--day" data-title="Day 4">
+      <img class="slide__side" alt="신세카이 츠텐카쿠"
+           src="https://images.unsplash.com/photo-1554188248-986adbb73be4?w=1200&q=80&auto=format&fit=crop" />
+      <div class="day">
+        <div class="day__head">
+          <span class="day__num">DAY 4</span>
+          <div>
+            <h2 class="h2">신세카이 산책 후 출국</h2>
+            <p class="day__date">6/29 월 · 출국일</p>
+          </div>
+        </div>
+        <ul class="plan">
+          <li><span class="plan__t">09:30</span><div><b>신세카이 · 츠텐카쿠</b><em>쇼와 레트로 감성 거리 📷</em></div></li>
+          <li><span class="plan__t">11:00</span><div><b>텐노지 공원 · 시텐노지</b><em>고즈넉한 자연 산책</em></div></li>
+          <li><span class="plan__t">12:00</span><div><b>점심: 신세카이 쿠시카츠</b><em>오사카 명물 가성비 · 약 ₩36,000</em></div></li>
+          <li><span class="plan__t">13:30</span><div><b>난바 복귀 · 짐 회수</b><em>코인락커 정리</em></div></li>
+          <li><span class="plan__t">14:30</span><div><b>난바 → KIX 공항 이동</b><em>난카이 라피트/급행 45~70분 ✈️</em></div></li>
+          <li><span class="plan__t">16:00</span><div><b>KIX 체크인 · 출국</b><em>버퍼 2시간 확보</em></div></li>
+        </ul>
+        <p class="rain"><b>☔ 우천 대체</b> 츠텐카쿠 실내전망, 텐노지 미오·아베노 하루카스 실내몰에서 시간 보내기</p>
+      </div>
+    </section>
+
+    <!-- 7. 숙소 비교 -->
+    <section class="slide" data-title="숙소">
+      <div class="wrap">
+        <p class="kicker">STAY</p>
+        <h2 class="h2">숙소 추천 지역 비교</h2>
+        <div class="cards">
+          <article class="card card--best">
+            <span class="card__badge">추천</span>
+            <h3>난바</h3>
+            <p class="card__price">₩120,000~170,000<small>/박·2인</small></p>
+            <p class="card__pro">공항직결, 도톤보리·먹거리·교통 허브, 야경 도보권</p>
+            <p class="card__con">번화가라 다소 시끄러움</p>
+            <p class="card__type">부티크/비즈니스 더블룸</p>
+          </article>
+          <article class="card">
+            <h3>우메다</h3>
+            <p class="card__price">₩130,000~190,000<small>/박·2인</small></p>
+            <p class="card__pro">쇼핑·JR 교통 최강, 깔끔</p>
+            <p class="card__con">공항 이동 1회 환승, 도심 느낌</p>
+            <p class="card__type">비즈니스 호텔</p>
+          </article>
+          <article class="card">
+            <h3>신사이바시 / 혼마치</h3>
+            <p class="card__price">₩125,000~180,000<small>/박·2인</small></p>
+            <p class="card__pro">쇼핑 중심, 혼마치는 조용</p>
+            <p class="card__con">식당 밀집도 난바보다 낮음</p>
+            <p class="card__type">디자인 호텔/레지던스</p>
+          </article>
+        </div>
+        <p class="note">💡 <b>결론</b> — 공항직결+동선+야경+가성비를 모두 잡는 <b>난바 부티크/비즈니스 더블룸</b>이 커플 여행에 최적. 예산형이면 조용한 혼마치.</p>
+      </div>
+    </section>
+
+    <!-- 8. 예산 -->
+    <section class="slide" data-title="예산">
+      <div class="wrap">
+        <p class="kicker">BUDGET</p>
+        <h2 class="h2">예상 비용 (2인 · 항공 제외)</h2>
+        <div class="budget">
+          <table class="btable">
+            <tbody>
+              <tr><td>숙소 3박</td><td class="num">₩450,000</td><td class="muted">난바 중급 ₩150,000×3</td></tr>
+              <tr><td>식비</td><td class="num">₩310,000</td><td class="muted">1인 1일 ~₩39,000</td></tr>
+              <tr><td>교통</td><td class="num">₩120,000</td><td class="muted">공항왕복+주유패스+ICOCA</td></tr>
+              <tr><td>입장료·액티비티</td><td class="num">₩90,000</td><td class="muted">오사카성·도다이지·공중정원</td></tr>
+              <tr class="total"><td>합계 (쇼핑 제외)</td><td class="num">약 ₩970,000</td><td class="muted">1인 ~₩485,000</td></tr>
+              <tr><td>쇼핑 (가변)</td><td class="num">₩200,000~</td><td class="muted">별도 책정</td></tr>
+            </tbody>
+          </table>
+          <div class="daily">
+            <p class="daily__title">하루별 지출 (2인 · 숙소·쇼핑 제외)</p>
+            <div class="bar"><span class="bar__label">Day1</span><span class="bar__fill" style="--w:63%"></span><span class="bar__val">₩72,000</span></div>
+            <div class="bar"><span class="bar__label">Day2</span><span class="bar__fill" style="--w:100%"></span><span class="bar__val">₩115,000</span></div>
+            <div class="bar"><span class="bar__label">Day3</span><span class="bar__fill" style="--w:78%"></span><span class="bar__val">₩90,000</span></div>
+            <div class="bar"><span class="bar__label">Day4</span><span class="bar__fill" style="--w:73%"></span><span class="bar__val">₩84,000</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. 교통패스 -->
+    <section class="slide" data-title="교통">
+      <div class="wrap">
+        <p class="kicker">TRANSPORT</p>
+        <h2 class="h2">교통패스, 이게 정답</h2>
+        <div class="cards cards--2">
+          <article class="card card--best">
+            <span class="card__badge">필수</span>
+            <h3>ICOCA</h3>
+            <p class="card__pro">충전식 IC카드. 지하철·사철·버스·편의점까지 태그 한 번으로. 동전 스트레스 해결.</p>
+          </article>
+          <article class="card card--best">
+            <span class="card__badge">강력추천</span>
+            <h3>오사카 주유패스 1일권</h3>
+            <p class="card__price">약 ₩28,000<small>/인</small></p>
+            <p class="card__pro">Day3에 사용 → 오사카성·공중정원 무료 + 지하철 무제한. 본전 이상.</p>
+          </article>
+        </div>
+        <p class="note">🚆 본 일정은 <b>ICOCA + 주유패스 1일권</b> 조합이 가성비 최적. 나라+시내 사철을 많이 타면 간사이 스루패스도 비교해보세요. 공항은 난카이 급행(가성비) 또는 라피트(편함·좌석지정).</p>
+      </div>
+    </section>
+
+    <!-- 10. 주의사항 + 실내코스 -->
+    <section class="slide" data-title="팁">
+      <div class="wrap">
+        <p class="kicker">TIPS</p>
+        <h2 class="h2">주의사항 &amp; 비 오는 날 실내 코스</h2>
+        <div class="tips">
+          <div class="tips__col">
+            <h3>⚠️ 주의할 점</h3>
+            <ul class="bullets">
+              <li>6월 말은 <b>장마철</b> — 우산·방수, 우천 동선 준비 필수</li>
+              <li>식당 다수 <b>현금 선호</b> → ICOCA·코인지갑 활용</li>
+              <li>도톤보리·신사이바시 주말 인파, <b>소매치기 주의</b></li>
+              <li>나라 사슴은 먹이 줄 때 들이받음, 비닐봉지 감추기</li>
+              <li>KIX 출국 버퍼 <b>최소 2시간</b> 확보</li>
+            </ul>
+          </div>
+          <div class="tips__col">
+            <h3>☔ 비와도 OK 실내 코스</h3>
+            <ul class="bullets">
+              <li>난바파크스 / 난바시티 지하상가</li>
+              <li>우메다 공중정원(실내 전망) · 그랜드프론트</li>
+              <li>오사카성 천수각 내부 · 나라국립박물관</li>
+              <li>도톤보리 아케이드 · 돈키호테 · 드럭스토어</li>
+              <li>아베노 하루카스 · 텐노지 미오 · 호리에 카페</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. 상세 일정표 -->
+    <section class="slide slide--table" data-title="상세표">
+      <div class="wrap wrap--wide">
+        <p class="kicker">FULL ITINERARY</p>
+        <h2 class="h2">상세 일정표 <small class="h2__sub">(가로로 스크롤 · CSV 다운로드 가능)</small></h2>
+        <div class="tablebox">
+          <table class="full">
+            <thead>
+              <tr><th>날짜</th><th>요일</th><th>시간대</th><th>장소/활동</th><th>추천 이유</th><th>이동</th><th>소요</th><th>비용(2인)</th><th>식사</th><th>우천 대체</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>6/26</td><td>금</td><td>15:30</td><td>호리에 감성거리·카페</td><td>편집숍·로컬 카페, 사진</td><td>도보</td><td>1.5h</td><td>₩16,000</td><td>카페 디저트</td><td>난바파크스 실내</td></tr>
+              <tr><td>6/26</td><td>금</td><td>19:00</td><td>도톤보리 야경·글리코사인</td><td>대표 야경 포토존</td><td>도보</td><td>1.5h</td><td>—</td><td>오코노미야키</td><td>아케이드</td></tr>
+              <tr><td>6/27</td><td>토</td><td>10:00</td><td>나라공원·사슴·도다이지</td><td>자연·감성·웅장</td><td>긴테쓰 40분</td><td>3h</td><td>₩26,000</td><td>나라마치 정식</td><td>나라국립박물관</td></tr>
+              <tr><td>6/27</td><td>토</td><td>18:00</td><td>우메다 공중정원 전망대</td><td>대표 야경</td><td>지하철</td><td>1.5h</td><td>₩28,000</td><td>라멘/정식</td><td>실내 전망 가능</td></tr>
+              <tr><td>6/28</td><td>일</td><td>09:30</td><td>오사카성 공원 산책</td><td>해자·천수각 사진</td><td>지하철</td><td>1.5h</td><td>₩12,000</td><td>카레/덮밥</td><td>천수각 내부</td></tr>
+              <tr><td>6/28</td><td>일</td><td>13:00</td><td>신사이바시·돈키호테 쇼핑</td><td>패션·잡화·기념품</td><td>지하철</td><td>3h</td><td>별도</td><td>—</td><td>전구간 아케이드</td></tr>
+              <tr><td>6/28</td><td>일</td><td>18:00</td><td>도톤보리 강변 야경</td><td>커플 야경·사진</td><td>도보</td><td>1h</td><td>—</td><td>쿠시카츠/스시</td><td>아케이드</td></tr>
+              <tr><td>6/29</td><td>월</td><td>09:30</td><td>신세카이·츠텐카쿠</td><td>쇼와 레트로 감성</td><td>지하철</td><td>2.5h</td><td>—</td><td>쿠시카츠</td><td>츠텐카쿠 실내</td></tr>
+              <tr><td>6/29</td><td>월</td><td>14:30</td><td>난바→KIX 출국</td><td>버퍼 확보</td><td>난카이 45~70분</td><td>1.5h</td><td>₩16,000</td><td>공항 식사</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <a class="dl" href="data/itinerary.csv" download>⬇ 전체 일정표 CSV 다운로드 (엑셀 붙여넣기용)</a>
+      </div>
+    </section>
+
+    <!-- 12. 마무리 -->
+    <section class="slide slide--cover slide--end" data-title="마무리">
+      <img class="slide__bg" alt="오사카 거리"
+           src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1600&q=80&auto=format&fit=crop" />
+      <div class="cover">
+        <p class="cover__eyebrow">CHECKLIST</p>
+        <h2 class="cover__title cover__title--sm">떠나기 전 체크</h2>
+        <ul class="checklist">
+          <li>여권 · 항공권 · eSIM/유심</li>
+          <li>ICOCA + 오사카 주유패스 예약</li>
+          <li>숙소 바우처 · 우산 · 보조배터리</li>
+          <li>엔화 환전(현금 선호 식당 대비)</li>
+        </ul>
+        <p class="cover__sub">즐거운 오사카 여행 되세요 🌸</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 네비게이션 -->
+  <nav class="nav" aria-label="슬라이드 이동">
+    <button class="nav__btn" id="prevBtn" aria-label="이전">‹</button>
+    <button class="nav__btn" id="nextBtn" aria-label="다음">›</button>
+  </nav>
+  <div class="dots" id="dots" aria-label="슬라이드 인디케이터"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

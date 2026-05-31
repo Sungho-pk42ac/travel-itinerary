@@ -1,0 +1,11 @@
+# 의존성 / 빌드 산출물 (현재는 순수 정적이라 대부분 미사용)
+node_modules/
+dist/
+.vercel/
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
