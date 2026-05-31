@@ -2,7 +2,8 @@
  * 오사카 커플 여행 슬라이드 컨트롤러
  * - 키보드(←→↑↓, Home/End), 클릭 버튼, 스와이프, 닷 인디케이터로 슬라이드 이동
  * - 스크롤 스냅과 동기화하여 진행바·카운터·활성 슬라이드 표시
- * - 모바일(<=600px)에서는 일반 스크롤로 동작 (스냅/네비 최소화)
+ * - 모바일(<=600px)에서도 풀스크린 스냅 슬라이드: 가로 스와이프로 페이지 전환,
+ *   세로 스와이프는 긴 일정 본문 읽기 스크롤, 하단 닷 탭으로 이동
  */
 (function () {
   "use strict";
@@ -104,10 +105,17 @@
   deck.addEventListener(
     "touchend",
     (e) => {
-      if (isMobile()) return; // 모바일은 네이티브 스크롤에 위임
       const dy = e.changedTouches[0].clientY - touchStartY;
       const dx = e.changedTouches[0].clientX - touchStartX;
-      const threshold = 50;
+      const threshold = 45;
+      if (isMobile()) {
+        // 모바일: 가로 스와이프로만 페이지 전환(세로는 긴 일정 본문 읽기 스크롤)
+        if (Math.abs(dx) > threshold && Math.abs(dx) > Math.abs(dy)) {
+          goTo(dx < 0 ? current + 1 : current - 1);
+        }
+        return;
+      }
+      // 데스크탑/태블릿: 세로·가로 스와이프 모두 페이지 전환
       if (Math.abs(dy) > threshold && Math.abs(dy) > Math.abs(dx)) {
         goTo(dy < 0 ? current + 1 : current - 1);
       } else if (Math.abs(dx) > threshold) {

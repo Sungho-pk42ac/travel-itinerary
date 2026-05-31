@@ -249,23 +249,55 @@ body {
 }
 
 /* =========================================================
-   반응형 — 모바일
+   반응형 — 모바일 (폰에서도 풀스크린 슬라이드 + 스와이프 인터랙션)
    ========================================================= */
 @media (max-width: 600px) {
-  body { overflow: auto; }
-  .deck { height: auto; overflow: visible; scroll-snap-type: none; }
-  .slide { height: auto; min-height: 100vh; padding: 76px 18px 70px; scroll-snap-align: none; }
-  .slide > * { opacity: 1; transform: none; } /* 모바일은 스크롤 기반이라 항상 표시 */
-  .topbar__counter { display: none; }
+  /* deck 자체를 스크롤러로 유지 → 스와이프로 슬라이드 페이징 */
+  body { overflow: hidden; }
+  .deck {
+    height: 100vh; height: 100dvh;            /* 주소창 보정: dvh 우선 */
+    overflow-y: scroll;
+    scroll-snap-type: y proximity;            /* 긴 슬라이드는 읽기 허용, 짧은 슬라이드는 스냅 */
+    -webkit-overflow-scrolling: touch;
+  }
+  .slide {
+    min-height: 100vh; min-height: 100dvh;
+    height: auto;
+    padding: 68px 16px 92px;
+    scroll-snap-align: start;
+    align-items: flex-start;                  /* 내용이 길면 위에서부터 */
+  }
+  .slide > * { opacity: 1; transform: none; } /* 모바일은 항상 표시(IO 미스 방지) */
+  .topbar__counter { display: inline; }
   .timeline { grid-template-columns: 1fr; }
-  .slide--day { display: block; height: auto; }
-  .slide__side { position: relative; width: 100%; height: 220px; }
-  .day { width: 100%; height: auto; margin: 0; background: var(--bg); padding: 28px 20px 40px; }
+
+  /* Day 슬라이드: 이미지 위 + 일정 아래 세로 스택, 슬라이드 단위로 넘김 */
+  .slide--day { display: flex; flex-direction: column; height: auto; padding: 0; }
+  .slide__side { position: relative; width: 100%; height: 190px; flex: none; }
+  .day {
+    width: 100%; height: auto; margin: 0; background: var(--bg);
+    padding: 22px 18px 92px; justify-content: flex-start;
+  }
   .day__head { gap: 12px; }
   .budget, .tips { gap: 16px; }
-  .nav { right: 16px; bottom: 16px; }
-  .nav__btn { width: 44px; height: 44px; }
+
+  /* 하단 가로 닷 인디케이터(폰에서 탭으로 이동) */
+  .dots {
+    display: flex; flex-direction: row; left: 50%; right: auto; top: auto; bottom: 14px;
+    transform: translateX(-50%); gap: 7px;
+    background: rgba(255, 253, 250, .82); padding: 8px 12px; border-radius: 22px;
+    backdrop-filter: blur(8px); box-shadow: var(--shadow);
+  }
+  .dots button { width: 8px; height: 8px; }
+  .dots button.is-active { width: 22px; height: 8px; border-radius: 5px; }
+
+  /* 더 큰 터치 타깃, 닷 위로 올림 */
+  .nav { right: 14px; bottom: 56px; }
+  .nav__btn { width: 48px; height: 48px; font-size: 26px; }
+
   .cover__title { font-size: clamp(44px, 16vw, 72px); }
+  .full { min-width: 680px; }
+  .h2 { font-size: clamp(24px, 7vw, 34px); }
 }
 
 /* 모션 최소화 선호 사용자 */
