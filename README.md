@@ -1,38 +1,56 @@
-# 🌃 OSAKA '26 — 커플 여행 가이드 앱
+# 🌸 Osaka Travel OS — 박성호 ♥ 양세은
 
-2026.06.26(금) ~ 06.29(월) · 2인 · 첫 해외 커플 마일스톤 여행을 위한 **반응형 모바일 웹앱**입니다.
-USJ · 나라 사슴 · 교토 종일투어 · 야간 공도 카트 · 미슐랭 가성비를 탭으로 넘겨보는 여행 가이드.
+2026.06.26(금) ~ 06.29(월) · 2인 · 첫 해외 커플 마일스톤 여행을 위한 **둘 전용 여행 동반자 앱**.
+USJ · 나라 사슴 · 교토 종일투어 · 야간 공도 카트 · 미슐랭 가성비를 담은, "진짜 SaaS 앱 같은" 경험.
 
-## ✨ 특징
-- **앱형 탭 UI** — 히어로 + 스티키 탭바(개요·DAY1~4·정보) + 일자별 패널 전환
-- **타임라인 카드** — 시간대별 코랄 커넥터 + 비용/예약/우천 칩, 하이라이트 강조
-- **D-day 카운터** — 출발일까지 자동 계산
-- **모바일 최적화** — 모바일 퍼스트, iOS 세이프에어리어, 반응형 이미지(`srcset`), 지연 로딩
-- **PWA** — 홈화면 설치, 오프라인 동작(서비스워커, cache-first + SWR)
-- **인터랙션** — 스크롤 리빌(IntersectionObserver), 햅틱 진동, 체크리스트 localStorage 저장
-- **디자인** — "황혼의 간사이" 더스크 인디고 × 석양 코랄/앰버 × 크림 / Fraunces · 고운바탕 · IBM Plex Sans KR
-- **순수 정적** — 빌드 불필요(HTML/CSS/JS), Unsplash 이미지, Google Fonts
-- **엑셀용 CSV** — `data/itinerary.csv` (정보 탭에서 다운로드)
+> 정적 브로슈어가 아니라 **살아있는 프로덕트** — 온보딩 · 실시간 위젯(날씨·환율) · 대시보드 ·
+> 인터랙티브 지도 · (예정) 커플 메모리 · AI 코파일럿.
 
-## 📁 구조
+## 🧱 스택
+**Vite · React · TypeScript · Tailwind CSS v4 · React Router · Zustand · TanStack Query ·
+React Leaflet · vite-plugin-pwa** — **Vercel** 배포.
+
+디자인 시스템은 **"Osaka Romance OS"** (Ivory·Warm Cream·Rose Gold·Coral / Plus Jakarta Sans + Pretendard).
+디자인 토큰은 `src/index.css`의 Tailwind `@theme`에 락(lock).
+
+## 📁 구조 (요약)
 ```
-travel-itinerary/
-├─ index.html             # 히어로 + 탭 + 6개 패널(개요·DAY1~4·정보)
-├─ css/styles.css         # 더스크 테마 · 모바일 퍼스트 · 타임라인 · 카드
-├─ js/main.js             # 탭 전환 · rAF 스크롤 · D-day · 리빌 · 체크리스트 · SW
-├─ data/itinerary.csv     # 시간대별 일정표
-├─ manifest.webmanifest   # PWA 매니페스트
-├─ sw.js                  # 서비스워커(오프라인 캐시)
-└─ icons/                 # 앱 아이콘(SVG, maskable 포함)
+src/
+├─ main.tsx · App.tsx · router.tsx
+├─ index.css            # Osaka Romance OS 디자인 토큰(@theme)
+├─ app/                 # store(Zustand) · queryClient(TanStack) · nav
+├─ data/                # trip 메타데이터 · (예정) itinerary/poi/places
+├─ components/          # AppShell · TopBar · BottomNav · ...
+└─ features/            # home · overview · day · map · info (+ onboarding/copilot 예정)
+e2e/                    # Playwright(모바일) 스모크
 ```
 
-## 🖥️ 로컬에서 보기
-별도 빌드 없이 `index.html`을 브라우저로 열면 됩니다.
-(PWA·서비스워커 테스트는 로컬 서버 권장) `python -m http.server` 또는 `npx serve`.
+## 🖥️ 로컬 개발
+```bash
+npm install
+npm run dev        # 개발 서버
+npm run build      # 타입체크 + 프로덕션 빌드
+npm run preview    # 빌드 결과 미리보기
+```
 
-## 🚀 배포 (GitHub Pages / Vercel)
-정적 사이트라 프레임워크 설정이 필요 없습니다. `main` 브랜치 푸시 시 자동 배포(GitHub Actions).
-> 디자인/일정을 바꿨다면 `sw.js`의 `CACHE` 버전을 올려야 사용자에게 새 버전이 반영됩니다.
+## ✅ 검증
+```bash
+npm run typecheck  # tsc
+npm run lint       # eslint
+npm run test       # vitest (단위)
+npm run test:e2e   # playwright (모바일 e2e, build 필요)
+```
+PR마다 GitHub Actions CI(typecheck·lint·vitest·build + playwright)가 돌고, Vercel이 프리뷰를 배포합니다.
+`main` 머지 = 프로덕션 자동 배포.
+
+## 🔐 환경변수 (`.env.local`, gitignore)
+| 키 | 용도 | 노출 |
+|---|---|---|
+| `VITE_GOOGLE_MAPS_KEY` | Google Maps/Places/Directions (선택, 없으면 Leaflet 폴백) | 브라우저(리퍼러 제한 필수) |
+| `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` | 커플 메모리 (선택, 없으면 비활성) | 브라우저(RLS 보호) |
+| `OPENAI_API_KEY` | AI 코파일럿 서버리스 (선택) | **서버 전용** |
+
+모든 외부 키 기능은 **키 미설정 시 graceful 폴백** — 키 없이도 앱이 동작합니다.
 
 ## 🗓️ 일정 요약
 | Day | 날짜 | 핵심 |
@@ -43,7 +61,7 @@ travel-itinerary/
 | 4 | 6/29 월 | 쇼핑 · **미슐랭 가성비 런치** · KIX 출국 |
 
 ## 🪪 출발 전 필수
-- **국제운전면허증(IDP)** 2인 — 야간 공도 카트 필수 (인천공항 발급 가능)
+- **국제운전면허증(IDP)** 2인 — 야간 공도 카트 필수
 - 미슐랭 런치 · 카트 예약 / 교토투어 집결지·시간 재확인
 
 ---

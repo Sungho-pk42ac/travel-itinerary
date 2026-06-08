@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+
+/*
+ * ============================================================
+ *  Osaka Romance OS — 디자인 락 (Design Lock)
+ *  Tailwind v4 @theme 토큰. 모든 슬라이스가 이 토큰을 공유한다.
+ *  팔레트: Ivory(쿨) · Warm Cream · Rose Gold · Coral · Charcoal
+ *  타이포: Plus Jakarta Sans(영문) + Pretendard(한글)
+ * ============================================================
+ */
+@theme {
+  /* 표면/배경 */
+  --color-ivory: #f4fafd;
+  --color-cream: #fbf6ef;
+  --color-surface: #ffffff;
+
+  /* 액센트 */
+  --color-rosegold: #b76e79;
+  --color-rosegold-soft: #e8c9ce;
+  --color-coral: #ff6f61;
+  --color-coral-soft: #ffd9d4;
+
+  /* 텍스트/라인 */
+  --color-ink: #1f1f29;
+  --color-charcoal: #2b2b33;
+  --color-muted: #6b6b76;
+  --color-line: #e7e1d8;
+
+  /* 상태 */
+  --color-ok: #2f9e6f;
+  --color-warn: #e2a32b;
+  --color-danger: #d2544b;
+
+  /* 타이포 */
+  --font-display: 'Plus Jakarta Sans', 'Pretendard Variable', Pretendard, ui-sans-serif,
+    system-ui, sans-serif;
+  --font-sans: 'Pretendard Variable', Pretendard, 'Plus Jakarta Sans', ui-sans-serif,
+    system-ui, sans-serif;
+
+  /* 라운드/엘리베이션 */
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 6px 24px -10px rgba(43, 43, 51, 0.22);
+  --shadow-float: 0 12px 36px -12px rgba(43, 43, 51, 0.28);
+}
+
+/* 전역 베이스 */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 모바일 세이프에어리어 + 풀스크린 앱 느낌 */
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 접근성: 모션 최소화 선호 시 애니메이션 제거 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
