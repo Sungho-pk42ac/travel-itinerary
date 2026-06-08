@@ -44,6 +44,16 @@
   --shadow-float: 0 12px 36px -12px rgba(43, 43, 51, 0.28);
 }
 
+/* 바텀시트 슬라이드업 */
+@keyframes slideup {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 /* 전역 베이스 */
 html,
 body,

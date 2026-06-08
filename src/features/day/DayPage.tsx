@@ -1,19 +1,20 @@
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PagePlaceholder from '../../components/PagePlaceholder'
 import Timeline from '../../components/Timeline'
+import PoiSheet from '../poi/PoiSheet'
 import { getDay } from '../../data/itinerary'
 import { trip } from '../../data/trip'
 
-/** Day N — 실제 일정 타임라인 렌더. (POI 바텀시트는 후속 슬라이스) */
+/** Day N — 실제 일정 타임라인 + POI 바텀시트. */
 export default function DayPage() {
   const { n } = useParams()
   const dayNum = Number(n)
   const day = getDay(dayNum)
+  const [openPoi, setOpenPoi] = useState<string | null>(null)
 
   if (!day) {
-    return (
-      <PagePlaceholder title="Day ?" subtitle={`1~${trip.totalDays}일차만 있어요`} />
-    )
+    return <PagePlaceholder title="Day ?" subtitle={`1~${trip.totalDays}일차만 있어요`} />
   }
 
   return (
@@ -24,7 +25,8 @@ export default function DayPage() {
         </p>
         <h1 className="mt-1 font-display text-2xl font-bold text-ink">{day.label}</h1>
       </div>
-      <Timeline activities={day.activities} />
+      <Timeline activities={day.activities} onSelect={setOpenPoi} />
+      <PoiSheet poiId={openPoi} onClose={() => setOpenPoi(null)} />
     </section>
   )
 }
