@@ -1,11 +1,15 @@
 import AppShell from './components/AppShell'
 import AppRoutes from './router'
+import Onboarding from './features/onboarding/Onboarding'
 
-/** 앱 루트 — 셸 안에 라우트를 렌더. */
+/** 앱 루트 — 온보딩 스플래시 + 셸 안에 라우트. */
 export default function App() {
   return (
-    <AppShell>
-      <AppRoutes />
-    </AppShell>
+    <>
+      <Onboarding />
+      <AppShell>
+        <AppRoutes />
+      </AppShell>
+    </>
   )
 }
