@@ -1,15 +1,15 @@
 {
   "name": "오사카 3박4일 커플 여행 가이드",
   "short_name": "오사카 여행",
-  "description": "감성 야경·자연·로컬 맛집 중심 오사카 커플 여행 슬라이드 가이드",
+  "description": "USJ·나라 사슴·교토 종일투어·야간 카트·미슐랭 가성비. 첫 해외 커플 마일스톤 여행 가이드 앱.",
   "lang": "ko",
   "dir": "ltr",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#faf7f2",
-  "theme_color": "#c9785b",
+  "background_color": "#160f28",
+  "theme_color": "#160f28",
   "categories": ["travel", "lifestyle"],
   "icons": [
     { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },

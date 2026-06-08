@@ -3,7 +3,7 @@
  * 코어 자산은 cache-first(오프라인 즉시 로딩),
  * Unsplash 사진은 stale-while-revalidate(빠른 표시 + 백그라운드 갱신).
  */
-const CACHE = "osaka-trip-v2";
+const CACHE = "osaka-trip-v3";
 const CORE = [
   "./",
   "./index.html",
