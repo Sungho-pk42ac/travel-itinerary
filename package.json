@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",
+    "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.28.0",
     "zustand": "^5.0.2"
   },
@@ -27,6 +29,7 @@
     "@tailwindcss/vite": "^4.0.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
+    "@types/leaflet": "^1.9.21",
     "@types/node": "^22.10.2",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
