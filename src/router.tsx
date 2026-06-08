@@ -5,8 +5,9 @@ import OverviewPage from './features/overview/OverviewPage'
 import DayPage from './features/day/DayPage'
 import InfoPage from './features/info/InfoPage'
 
-// 지도(Leaflet 번들)는 /map 진입 시에만 로드 — 초기 번들 경량화.
+// 무거운 라우트는 진입 시에만 로드 — 초기 번들 경량화.
 const MapPage = lazy(() => import('./features/map/MapPage'))
+const MemoryPage = lazy(() => import('./features/memory/MemoryPage'))
 
 /** 라우트 로딩 폴백. */
 function RouteFallback() {
@@ -30,6 +31,14 @@ export default function AppRoutes() {
         element={
           <Suspense fallback={<RouteFallback />}>
             <MapPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/memory"
+        element={
+          <Suspense fallback={<RouteFallback />}>
+            <MemoryPage />
           </Suspense>
         }
       />
