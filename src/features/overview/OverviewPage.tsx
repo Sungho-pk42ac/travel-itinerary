@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { flights, policies } from '../../data/flights'
 import { trip } from '../../data/trip'
 
@@ -31,6 +32,18 @@ export default function OverviewPage() {
           </div>
         </div>
       </section>
+
+      {/* 우리 추억 진입 */}
+      <Link
+        to="/memory"
+        className="flex items-center justify-between rounded-card bg-gradient-to-br from-rosegold to-coral p-4 text-white shadow-soft"
+      >
+        <span>
+          <span className="font-display font-semibold">💌 우리 추억 · 버킷리스트</span>
+          <span className="mt-0.5 block text-xs text-white/85">두 폰 실시간 공유 메모리</span>
+        </span>
+        <span aria-hidden>→</span>
+      </Link>
 
       {/* 항공 요약 */}
       <section className="space-y-2">
