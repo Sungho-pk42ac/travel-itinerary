@@ -1,7 +1,17 @@
-# 의존성 / 빌드 산출물 (현재는 순수 정적이라 대부분 미사용)
+# 의존성 / 빌드 산출물
 node_modules/
 dist/
 .vercel/
+
+# 환경변수 / 시크릿 (API 키 등 — 절대 커밋 금지)
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.production.local
+
+# OMC 내부 오케스트레이션 상태 (공개 레포에 미포함)
+.omc/
 
 # OS / 에디터
 .DS_Store
