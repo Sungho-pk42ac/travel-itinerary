@@ -66,6 +66,23 @@ function json(body: unknown, status = 200): Response {
   })
 }
 
+/**
+ * 소프트 Origin 가드 — 앱 도메인(*.vercel.app)·localhost에서 온 요청만 허용.
+ * 캐주얼/봇 abuse(무인증 엔드포인트로 OpenAI 쿼터 소모)를 낮추기 위함.
+ * ⚠ Origin 헤더는 스푸핑 가능하므로 완전한 방어는 아님 — 강한 보호는 Vercel
+ *   Firewall/Rate-Limit 권장(README 참고).
+ */
+function isAllowedOrigin(req: Request): boolean {
+  const origin = req.headers.get('origin') || req.headers.get('referer') || ''
+  if (!origin) return false
+  try {
+    const host = new URL(origin).hostname
+    return host === 'localhost' || host === '127.0.0.1' || host.endsWith('.vercel.app')
+  } catch {
+    return false
+  }
+}
+
 /** 날씨 툴 실행(server) — open-meteo. */
 async function runWeather(city: string): Promise<string> {
   const c = COORDS[city] ?? COORDS.osaka
@@ -110,6 +127,7 @@ async function callOpenAI(key: string, messages: ChatMessage[]) {
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== 'POST') return json({ error: 'method_not_allowed' }, 405)
+  if (!isAllowedOrigin(req)) return json({ error: 'forbidden_origin' }, 403)
 
   const key = process.env.OPENAI_API_KEY
   if (!key) {
