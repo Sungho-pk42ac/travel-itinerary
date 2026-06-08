@@ -5,11 +5,13 @@ test.describe('지도', () => {
     await page.goto('/map')
     await expect(page.getByRole('heading', { name: '지도' })).toBeVisible()
 
-    // Leaflet 컨테이너 렌더
-    await expect(page.locator('.leaflet-container')).toBeVisible()
+    // 지도 컨테이너 렌더 — Leaflet(무키) 또는 Google(키 있을 때) 어느 쪽이든
+    await expect(page.locator('.leaflet-container, .gm-style').first()).toBeVisible({
+      timeout: 15000,
+    })
 
     // 전체: 모든 장소(10개) 표시
-    await expect(page.getByText('10개 장소 표시')).toBeVisible()
+    await expect(page.getByText('10개 장소 표시')).toBeVisible({ timeout: 15000 })
 
     // D3(교토) 필터: 장소 수가 줄어든다
     await page.getByRole('button', { name: 'D3', exact: true }).click()
