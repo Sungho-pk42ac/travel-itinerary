@@ -52,6 +52,10 @@ PR마다 GitHub Actions CI(typecheck·lint·vitest·build + playwright)가 돌�
 
 모든 외부 키 기능은 **키 미설정 시 graceful 폴백** — 키 없이도 앱이 동작합니다.
 
+> 🔐 AI 코파일럿(`/api/agent`)은 무인증 엔드포인트라 소프트 Origin 가드(앱 도메인만)를 두었습니다.
+> Origin은 스푸핑 가능하므로, 비용 abuse를 강하게 막으려면 **Vercel Firewall/Rate-Limit**을 권장합니다.
+> 채팅에 노출된 모든 키(OpenAI·Supabase·PAT 등)는 **rotate(재발급)** 하세요.
+
 ## 🗓️ 일정 요약
 | Day | 날짜 | 핵심 |
 |---|---|---|
