@@ -1,0 +1,7 @@
+# 텍스트 파일은 항상 LF로 정규화 (크로스플랫폼 CI 일관성)
+* text=auto eol=lf
+
+# 바이너리
+*.jpg binary
+*.png binary
+*.svg text eol=lf
