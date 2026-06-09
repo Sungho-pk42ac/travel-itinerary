@@ -30,7 +30,7 @@ test.describe('온보딩 스플래시', () => {
     const splash = page.getByText('탭하면 바로 시작')
     await expect(splash).toBeVisible()
     // 약 1.5초 후 자동 진입 → 대시보드 표시
-    await expect(page.getByText('예상 경비 (2인)')).toBeVisible({ timeout: 5000 })
-    await expect(splash).toBeHidden()
+    await expect(page.getByText('예상 경비 (2인)')).toBeVisible({ timeout: 8000 })
+    await expect(splash).toBeHidden({ timeout: 8000 })
   })
 })

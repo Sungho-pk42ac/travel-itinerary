@@ -96,7 +96,99 @@ export async function toggleBucket(item: BucketItem, by: string) {
   if (error) throw error
 }
 
-/** 추억·버킷 변경을 실시간 구독. 정리 함수 반환. */
+export interface Comment {
+  id: string
+  target_type: string
+  target_id: string
+  author: string
+  text: string
+  created_at: string
+}
+
+export interface Reaction {
+  id: string
+  target_type: string
+  target_id: string
+  author: string
+  emoji: string
+  created_at: string
+}
+
+/** 특정 대상의 댓글(오래된 순). */
+export async function listComments(targetType: string, targetId: string): Promise<Comment[]> {
+  const sb = getSupabase()
+  if (!sb) return []
+  const { data, error } = await sb
+    .from('comments')
+    .select('*')
+    .eq('target_type', targetType)
+    .eq('target_id', targetId)
+    .order('created_at', { ascending: true })
+  if (error) throw error
+  return (data ?? []) as Comment[]
+}
+
+/** 댓글 추가. */
+export async function addComment(input: {
+  targetType: string
+  targetId: string
+  author: string
+  text: string
+}) {
+  const sb = getSupabase()
+  if (!sb) throw new Error('Supabase 비활성')
+  const { error } = await sb.from('comments').insert({
+    target_type: input.targetType,
+    target_id: input.targetId,
+    author: input.author,
+    text: input.text,
+  })
+  if (error) throw error
+}
+
+/** 특정 대상의 리액션 전부. */
+export async function listReactions(targetType: string, targetId: string): Promise<Reaction[]> {
+  const sb = getSupabase()
+  if (!sb) return []
+  const { data, error } = await sb
+    .from('reactions')
+    .select('*')
+    .eq('target_type', targetType)
+    .eq('target_id', targetId)
+  if (error) throw error
+  return (data ?? []) as Reaction[]
+}
+
+/**
+ * 리액션 토글 — 같은 작성자가 같은 대상에 누르면 이모지 변경/해제.
+ * (target_type,target_id,author) 유니크. 같은 이모지 다시 누르면 삭제.
+ */
+export async function toggleReaction(input: {
+  targetType: string
+  targetId: string
+  author: string
+  emoji: string
+  existing?: Reaction
+}) {
+  const sb = getSupabase()
+  if (!sb) throw new Error('Supabase 비활성')
+  const { targetType, targetId, author, emoji, existing } = input
+  if (existing && existing.emoji === emoji) {
+    const { error } = await sb.from('reactions').delete().eq('id', existing.id)
+    if (error) throw error
+    return
+  }
+  // upsert(유니크 충돌 시 갱신)
+  const { error } = await sb
+    .from('reactions')
+    .upsert(
+      { target_type: targetType, target_id: targetId, author, emoji },
+      { onConflict: 'target_type,target_id,author' },
+    )
+  if (error) throw error
+}
+
+/** 추억·버킷·댓글·리액션 변경을 실시간 구독. 정리 함수 반환. */
 export function subscribeRealtime(onChange: () => void): () => void {
   const sb = getSupabase()
   if (!sb) return () => {}
@@ -104,6 +196,8 @@ export function subscribeRealtime(onChange: () => void): () => void {
     .channel('couple-memory')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'memories' }, onChange)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'bucket_list' }, onChange)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'comments' }, onChange)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'reactions' }, onChange)
     .subscribe()
   return () => {
     sb.removeChannel(channel)
