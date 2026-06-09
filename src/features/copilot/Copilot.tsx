@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import BottomSheet from '../../components/BottomSheet'
 import Persona from './Persona'
 import { askAgent, type AgentMessage } from '../../lib/agentClient'
@@ -22,8 +22,10 @@ export default function Copilot() {
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
   const navigate = useNavigate()
-  const location = useLocation()
   const listRef = useRef<HTMLDivElement>(null)
+  const turnsRef = useRef(turns)
+  turnsRef.current = turns
+  const busyRef = useRef(false)
 
   // 진입 후(스플래시 뒤) 말풍선을 잠깐 띄워 대화를 유도
   useEffect(() => {
@@ -43,25 +45,43 @@ export default function Copilot() {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight })
   }, [turns, open])
 
-  const send = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const text = input.trim()
-    if (!text || busy) return
-    const next: ChatTurn[] = [...turns, { role: 'user', content: text }]
+  const sendText = async (raw: string) => {
+    const text = raw.trim()
+    if (!text || busyRef.current) return
+    const next: ChatTurn[] = [...turnsRef.current, { role: 'user', content: text }]
     setTurns(next)
     setInput('')
+    busyRef.current = true
     setBusy(true)
 
-    const history: AgentMessage[] = next
-      .filter((t) => t.content)
-      .map((t) => ({ role: t.role, content: t.content }))
-    const res = await askAgent(history, { tab: location.pathname })
+    const history: AgentMessage[] = next.map((t) => ({ role: t.role, content: t.content }))
+    const res = await askAgent(history, { tab: window.location.pathname })
     setTurns((prev) => [...prev, { role: 'assistant', content: res.reply }])
+    busyRef.current = false
     setBusy(false)
 
     for (const a of res.actions) {
       if (a.type === 'navigate' && a.to.startsWith('/')) navigate(a.to)
     }
+  }
+
+  // PoiDog 등에서 "🐾 더 물어보기" → 코파일럿 열고 자동 질문
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const q = (e as CustomEvent<{ q?: string }>).detail?.q
+      setOpen(true)
+      setBubble(false)
+      if (q) void sendText(q)
+    }
+    window.addEventListener('osaka:ask', handler)
+    return () => window.removeEventListener('osaka:ask', handler)
+    // sendText는 ref 기반이라 마운트 시 1회 등록으로 충분
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    void sendText(input)
   }
 
   return (
@@ -82,7 +102,6 @@ export default function Copilot() {
             >
               ✕
             </button>
-            {/* 꼬리 */}
             <span className="absolute -bottom-1 right-4 h-3 w-3 rotate-45 bg-surface ring-1 ring-line [clip-path:polygon(100%_0,100%_100%,0_100%)]" />
           </div>
         )}
@@ -114,7 +133,7 @@ export default function Copilot() {
             {busy && <p className="text-sm text-muted">강아지가 킁킁 생각 중… 🐾</p>}
           </div>
 
-          <form onSubmit={send} className="mt-3 flex gap-2">
+          <form onSubmit={onSubmit} className="mt-3 flex gap-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}

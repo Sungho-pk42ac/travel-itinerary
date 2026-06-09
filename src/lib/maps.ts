@@ -14,3 +14,8 @@ export function googleSearchUrl(query: string, coords?: LatLng): string {
   const base = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
   return coords ? `${base}&query=${coords.lat},${coords.lng}` : base
 }
+
+/** 네이버 블로그 후기 검색 링크(한국 여행자 참고용, 무키). */
+export function naverBlogSearchUrl(query: string): string {
+  return `https://search.naver.com/search.naver?where=blog&query=${encodeURIComponent(query + ' 후기')}`
+}

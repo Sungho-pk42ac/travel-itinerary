@@ -11,14 +11,20 @@ test.describe('Overview', () => {
   })
 })
 
-test.describe('POI 바텀시트', () => {
-  test('Day1 USJ 항목 → 시트 열림(예약 링크) → Esc 닫힘', async ({ page }) => {
+test.describe('POI 강아지 가이드', () => {
+  test('Day1 USJ 탭 → 강아지 선택지 → 설명 → Esc 닫힘', async ({ page }) => {
     await page.goto('/day/1')
     await page.getByRole('button', { name: /USJ 오후 입장/ }).click()
 
-    const dialog = page.getByRole('dialog', { name: '유니버설 스튜디오 재팬' })
+    const dialog = page.getByRole('dialog', { name: '유니버설 스튜디오 재팬 가이드' })
     await expect(dialog).toBeVisible()
-    await expect(dialog.getByRole('link', { name: 'USJ 공식 예매' })).toBeVisible()
+    // 선택지: 블로그/예약/설명
+    await expect(dialog.getByText('블로그 후기')).toBeVisible()
+    await expect(dialog.getByText('예약·정보')).toBeVisible()
+
+    // 설명 → 안경 강아지 + 큐레이션 팩트 + 길찾기
+    await dialog.getByRole('button', { name: /설명 들을래/ }).click()
+    await expect(dialog.getByText(/슈퍼 닌텐도 월드/)).toBeVisible()
     await expect(dialog.getByRole('link', { name: '길찾기' })).toBeVisible()
 
     await page.keyboard.press('Escape')
