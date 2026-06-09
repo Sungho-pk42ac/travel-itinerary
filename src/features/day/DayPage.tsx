@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PagePlaceholder from '../../components/PagePlaceholder'
 import Timeline from '../../components/Timeline'
-import PoiSheet from '../poi/PoiSheet'
+import PoiDog from '../poi/PoiDog'
 import { getDay } from '../../data/itinerary'
 import { trip } from '../../data/trip'
 
@@ -26,7 +26,7 @@ export default function DayPage() {
         <h1 className="mt-1 font-display text-2xl font-bold text-ink">{day.label}</h1>
       </div>
       <Timeline activities={day.activities} onSelect={setOpenPoi} />
-      <PoiSheet poiId={openPoi} onClose={() => setOpenPoi(null)} />
+      <PoiDog poiId={openPoi} onClose={() => setOpenPoi(null)} />
     </section>
   )
 }
