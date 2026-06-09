@@ -41,6 +41,7 @@ npm run test       # vitest (단위)
 npm run test:e2e   # playwright (모바일 e2e, build 필요)
 ```
 PR마다 GitHub Actions CI(typecheck·lint·vitest·build + playwright)가 돌고, Vercel이 프리뷰를 배포합니다.
+또한 **Claude가 PR 변경분을 자동 코드리뷰**(`.github/workflows/claude-review.yml`)해 코멘트로 남깁니다.
 `main` 머지 = 프로덕션 자동 배포.
 
 ## 🔐 환경변수 (`.env.local`, gitignore)
