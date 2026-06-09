@@ -23,6 +23,7 @@ export default function Copilot() {
   const [busy, setBusy] = useState(false)
   const navigate = useNavigate()
   const listRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const turnsRef = useRef(turns)
   turnsRef.current = turns
   const busyRef = useRef(false)
@@ -38,7 +39,11 @@ export default function Copilot() {
   }, [])
 
   useEffect(() => {
-    if (open) setBubble(false)
+    if (!open) return
+    setBubble(false)
+    // 열면 바로 입력 가능하도록 포커스(BottomSheet 패널 포커스 뒤에)
+    const t = window.setTimeout(() => inputRef.current?.focus(), 80)
+    return () => window.clearTimeout(t)
   }, [open])
 
   useEffect(() => {
@@ -59,6 +64,8 @@ export default function Copilot() {
     setTurns((prev) => [...prev, { role: 'assistant', content: res.reply }])
     busyRef.current = false
     setBusy(false)
+    // 카톡처럼 연속 입력 — 전송 후에도 입력창 포커스 유지
+    inputRef.current?.focus()
 
     for (const a of res.actions) {
       if (a.type === 'navigate' && a.to.startsWith('/')) navigate(a.to)
@@ -135,12 +142,13 @@ export default function Copilot() {
 
           <form onSubmit={onSubmit} className="mt-3 flex gap-2">
             <input
+              ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="예: 둘째 날 비 오면 어디 가?"
               aria-label="가이드에게 질문"
-              disabled={busy}
-              className="flex-1 rounded-pill border border-line bg-ivory px-4 py-2.5 text-sm focus:border-coral focus:outline-none disabled:opacity-60"
+              enterKeyHint="send"
+              className="flex-1 rounded-pill border border-line bg-ivory px-4 py-2.5 text-sm focus:border-coral focus:outline-none"
             />
             <button
               type="submit"

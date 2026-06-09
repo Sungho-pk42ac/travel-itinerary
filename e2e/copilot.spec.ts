@@ -20,6 +20,9 @@ test.describe('AI 코파일럿', () => {
       const count = await dialog.locator('p.rounded-2xl').count()
       expect(count).toBeGreaterThanOrEqual(3)
     }).toPass({ timeout: 10000 })
+
+    // 카톡처럼 연속 입력 — 전송 후에도 입력창에 포커스가 남아야 함(회귀)
+    await expect(input).toBeFocused()
   })
 
   test('입력창이 한 글자씩 타이핑해도 포커스를 잃지 않는다(회귀)', async ({ page }) => {
