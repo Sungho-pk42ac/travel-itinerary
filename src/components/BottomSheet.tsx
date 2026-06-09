@@ -19,6 +19,10 @@ export default function BottomSheet({
 }) {
   const panelRef = useRef<HTMLDivElement>(null)
   const lastFocused = useRef<HTMLElement | null>(null)
+  // onClose를 ref로 보관 — effect deps에서 제외해 부모 리렌더(예: 입력 타이핑)마다
+  // effect가 재실행되어 입력 포커스를 강탈하는 버그를 방지.
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
 
   useEffect(() => {
     if (!open) return
@@ -27,7 +31,7 @@ export default function BottomSheet({
     navigator.vibrate?.(8)
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') onCloseRef.current()
     }
     document.addEventListener('keydown', onKey)
     // 배경 스크롤 잠금
@@ -39,7 +43,7 @@ export default function BottomSheet({
       document.body.style.overflow = prevOverflow
       lastFocused.current?.focus?.()
     }
-  }, [open, onClose])
+  }, [open])
 
   if (!open) return null
 

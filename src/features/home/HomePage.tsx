@@ -13,23 +13,55 @@ export default function HomePage() {
   const dday = getDDay()
   const ddayLabel = dday > 0 ? `D-${dday}` : dday === 0 ? 'D-DAY' : `여행 ${-dday}일차`
 
+  const delay = (i: number) => ({ '--d': `${i * 80}ms` }) as React.CSSProperties
+
   return (
     <div className="space-y-4">
       {/* D-day 히어로 */}
-      <section className="rounded-card bg-gradient-to-br from-rosegold to-coral p-6 text-white shadow-float">
-        <p className="text-sm opacity-90">
-          {trip.destination} · {trip.startDate} ~ {trip.endDate}
-        </p>
-        <p className="mt-2 font-display text-4xl font-extrabold tracking-tight">{ddayLabel}</p>
-        <p className="mt-1 text-sm opacity-90">
-          {trip.partnerA} ♥ {trip.partnerB}
-        </p>
+      <section
+        className="reveal relative overflow-hidden rounded-card bg-gradient-to-br from-rosegold via-coral to-coral p-6 text-white shadow-float"
+        style={delay(0)}
+      >
+        {/* 부드러운 광택 + ♥ 워터마크 */}
+        <span
+          className="pointer-events-none absolute -right-6 -top-10 select-none text-[10rem] leading-none text-white/10"
+          aria-hidden
+        >
+          ♥
+        </span>
+        <span
+          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          style={{
+            background:
+              'radial-gradient(120% 80% at 0% 0%, rgba(255,255,255,0.25), transparent 55%)',
+          }}
+        />
+        <div className="relative">
+          <p className="text-sm opacity-90">
+            {trip.destination} · {trip.startDate} ~ {trip.endDate}
+          </p>
+          <p className="mt-2 font-display text-5xl font-extrabold tracking-tight drop-shadow-sm">
+            {ddayLabel}
+          </p>
+          <p className="mt-1 text-sm opacity-95">
+            {trip.partnerA} <span className="text-white">♥</span> {trip.partnerB}
+          </p>
+        </div>
       </section>
 
-      <NextEventCard />
-      <WeatherCard />
-      <FxCard />
-      <BudgetCard />
+      <div className="reveal" style={delay(1)}>
+        <NextEventCard />
+      </div>
+      <div className="reveal" style={delay(2)}>
+        <WeatherCard />
+      </div>
+      <div className="reveal" style={delay(3)}>
+        <FxCard />
+      </div>
+      <div className="reveal" style={delay(4)}>
+        <BudgetCard />
+      </div>
     </div>
   )
 }

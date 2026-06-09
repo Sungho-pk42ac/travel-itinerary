@@ -64,10 +64,63 @@ body,
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: var(--color-ivory);
+  /* Osaka Romance OS — 아이보리 위에 부드러운 로즈/코랄 블룸으로 분위기·깊이 */
+  background-color: var(--color-ivory);
+  background-image:
+    radial-gradient(60% 50% at 12% 0%, rgba(255, 111, 97, 0.1), transparent 60%),
+    radial-gradient(55% 45% at 100% 8%, rgba(183, 110, 121, 0.12), transparent 60%),
+    radial-gradient(50% 40% at 50% 100%, rgba(251, 246, 239, 0.9), transparent 70%);
+  background-attachment: fixed;
   color: var(--color-charcoal);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* 아주 옅은 그레인 — 디지털 평면감을 줄여 종이 질감 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 콘텐츠는 그레인 위로 */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* 페이지 로드 staggered 등장 */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 말풍선 팝 */
+@keyframes bubblepop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 등장 유틸 — 부모에서 --d로 지연 조절 */
+.reveal {
+  animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
 }
 
 /* 모바일 세이프에어리어 + 풀스크린 앱 느낌 */
