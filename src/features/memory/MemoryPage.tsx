@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import MemoryItem from './MemoryItem'
 import {
   addBucketItem,
   addMemory,
@@ -108,12 +109,15 @@ function MemoryBoard() {
   const [text, setText] = useState('')
   const [bucketLabel, setBucketLabel] = useState('')
   const [error, setError] = useState<string | null>(null)
+  // 실시간 변경 시 증가 → 각 MemoryItem이 댓글/리액션을 다시 로드
+  const [rev, setRev] = useState(0)
 
   const refresh = useCallback(async () => {
     try {
       const [m, b] = await Promise.all([listMemories(), listBucket()])
       setMemories(m)
       setBucket(b)
+      setRev((v) => v + 1)
       setError(null)
     } catch {
       setError('불러오기에 실패했어요. 잠시 후 다시 시도해 주세요.')
@@ -231,13 +235,7 @@ function MemoryBoard() {
         </form>
         <ul className="mt-3 space-y-2">
           {memories.map((m) => (
-            <li key={m.id} className="rounded-lg bg-cream/60 p-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-rosegold">{m.author}</span>
-                <span className="text-[11px] text-muted">{m.created_at.slice(0, 10)}</span>
-              </div>
-              <p className="mt-1 text-sm text-charcoal">{m.text}</p>
-            </li>
+            <MemoryItem key={m.id} memory={m} author={author} rev={rev} />
           ))}
           {memories.length === 0 && <li className="text-sm text-muted">첫 추억을 남겨보세요 🩷</li>}
         </ul>
