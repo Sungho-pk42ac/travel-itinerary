@@ -5,9 +5,9 @@ test.describe('AI 코파일럿', () => {
     await page.goto('/home')
     await page.getByRole('button', { name: '여행 가이드 열기' }).click()
 
-    const dialog = page.getByRole('dialog', { name: '여행 가이드' })
+    const dialog = page.getByRole('dialog', { name: '강아지 가이드' })
     await expect(dialog).toBeVisible()
-    await expect(dialog.getByText(/오사카 여행 가이드/)).toBeVisible()
+    await expect(dialog.getByText(/뭐든 물어봐/)).toBeVisible()
 
     // 입력 — 제어 컴포넌트 상태 커밋을 toHaveValue로 보장한 뒤 전송
     const input = dialog.getByLabel('가이드에게 질문')
@@ -20,5 +20,16 @@ test.describe('AI 코파일럿', () => {
       const count = await dialog.locator('p.rounded-2xl').count()
       expect(count).toBeGreaterThanOrEqual(3)
     }).toPass({ timeout: 10000 })
+  })
+
+  test('입력창이 한 글자씩 타이핑해도 포커스를 잃지 않는다(회귀)', async ({ page }) => {
+    await page.goto('/home')
+    await page.getByRole('button', { name: '여행 가이드 열기' }).click()
+    const dialog = page.getByRole('dialog', { name: '강아지 가이드' })
+    const input = dialog.getByLabel('가이드에게 질문')
+    // 키 입력을 하나씩 보내 포커스 강탈 시 글자 누락을 잡는다
+    await input.pressSequentially('내일 일정 알려줘', { delay: 30 })
+    await expect(input).toHaveValue('내일 일정 알려줘')
+    await expect(input).toBeFocused()
   })
 })
