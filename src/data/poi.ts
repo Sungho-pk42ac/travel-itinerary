@@ -44,15 +44,14 @@ export const pois: Poi[] = [
     bookingLabel: 'USJ 공식 예매',
   },
   {
-    id: 'nara',
-    name: '나라공원 · 도다이지 대불',
+    id: 'kadensho',
+    name: '아라시야마 온천 · 카덴쇼(花伝抄)',
     category: 'attraction',
     blurb: [
-      '자유롭게 노니는 사슴과 인사하고, 세계 최대 목조건축 도다이지 대불을 본다.',
-      '비 오면 나라국립박물관(실내)으로 대체 가능.',
+      '교리츠 리조트 「京都 嵐山温泉 花伝抄」 — 노천온천·유카타가 있는 온천 료칸.',
+      '3박째 숙소. 조식·아침 온천으로 여행 후반 피로를 푼다.',
     ],
-    photoFile: 'Nara Park - panoramio (2).jpg',
-    coords: { lat: 34.6851, lng: 135.8407 },
+    coords: { lat: 35.016, lng: 135.677 },
     bookingLabel: '구글맵',
   },
   {
@@ -107,7 +106,7 @@ export const pois: Poi[] = [
     category: 'activity',
     blurb: [
       'Klook 전세버스 종일투어 — 아마노하시다테·이네 후나야·미야마 가야부키.',
-      '집결지(오사카 vs 교토역)·점심 포함 여부 사전 확인.',
+      '짐은 버스 보관 · ★ 하차지(교토역) 확인 — 오사카 복귀 투어면 짐도 오사카로 돌아옴.',
     ],
     photoFile: 'Amanohashidate aerial view 2026.jpg',
     coords: { lat: 35.5717, lng: 135.1937 },
@@ -115,16 +114,15 @@ export const pois: Poi[] = [
     bookingLabel: 'Klook 투어(예약완료)',
   },
   {
-    id: 'michelin',
-    name: '미슐랭 1스타 가성비 런치',
-    category: 'food',
+    id: 'arashiyama',
+    name: '아라시야마 · 대나무숲 · 도게츠교',
+    category: 'attraction',
     blurb: [
-      '마일스톤 피날레 — 디너 대비 절반 가격의 스타 런치 코스.',
-      '예약 필수. 미슐랭 가이드/타베로그로 확인.',
+      '치쿠린(대나무숲)·도게츠교·텐류지 정원 — 교토 대표 풍경.',
+      '마지막 날 오전 산책 동선. 비 오면 텐류지 법당/카페(실내) 위주.',
     ],
-    coords: { lat: 34.672, lng: 135.5015 },
-    bookingUrl: 'https://guide.michelin.com/',
-    bookingLabel: '미슐랭 가이드',
+    coords: { lat: 35.0094, lng: 135.6722 },
+    bookingLabel: '구글맵',
   },
   {
     id: 'shinsai',
@@ -132,7 +130,7 @@ export const pois: Poi[] = [
     category: 'shopping',
     blurb: [
       '패션·화장품·드럭스토어 상비약까지. 전 구간 아케이드(우천 OK).',
-      '출국일 막판 쇼핑 동선.',
+      '오사카 핫플 종일(27일) 쇼핑 동선.',
     ],
     photoFile: 'Shinsaibashi Osaka Japan01-r.jpg',
     coords: { lat: 34.6723, lng: 135.5008 },

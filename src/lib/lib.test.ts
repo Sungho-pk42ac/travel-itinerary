@@ -63,7 +63,7 @@ describe('nextEvent', () => {
     expect(r.current).toBeNull()
   })
   it('여행 중이면 current/next를 모두 채운다', () => {
-    // Day2 13:00 → current=10:30 나라, next=13:30 구로몬
+    // Day2 13:00 → current=12:30 점심, next=13:30 구로몬
     const r = getUpcoming(new Date('2026-06-27T13:00:00+09:00'))
     expect(r.phase).toBe('during')
     expect(r.current?.day).toBe(2)
