@@ -29,7 +29,7 @@ test.describe('워킹 스켈레톤', () => {
   test('Day 1 타임라인에 실제 일정(USJ)이 렌더된다', async ({ page }) => {
     await page.goto('/day/1')
     await expect(page.getByRole('heading', { name: /USJ 오후 입장/ })).toBeVisible()
-    await expect(page.getByText('12:30')).toBeVisible()
+    await expect(page.getByText('14:00')).toBeVisible()
     // 하이라이트/우천 칩 등 타임라인 요소 존재
     await expect(page.getByText('마일스톤 핵심 체험')).toBeVisible()
   })
