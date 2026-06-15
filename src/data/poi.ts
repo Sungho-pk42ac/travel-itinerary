@@ -36,7 +36,7 @@ export const pois: Poi[] = [
     category: 'attraction',
     blurb: [
       '슈퍼 닌텐도 월드 + 위저딩 월드 오브 해리포터가 핵심.',
-      '오후권이라 익스프레스 패스로 인기 어트랙션 회전율 확보.',
+      '오후 입장(1일권)이라 익스프레스 패스로 인기 어트랙션 회전율 확보.',
     ],
     photoFile: 'Universal Studios Japan 2019,08.jpg',
     coords: { lat: 34.6654, lng: 135.4323 },
@@ -105,13 +105,13 @@ export const pois: Poi[] = [
     name: '교토 종일투어 · 아마노하시다테',
     category: 'activity',
     blurb: [
-      'Klook 전세버스 종일투어 — 아마노하시다테·이네 후나야·미야마 가야부키.',
+      'Trip.com 전세버스 종일투어 — 아마노하시다테 케이블카·이네 후나야.',
       '짐은 버스 보관 · ★ 하차지(교토역) 확인 — 오사카 복귀 투어면 짐도 오사카로 돌아옴.',
     ],
     photoFile: 'Amanohashidate aerial view 2026.jpg',
     coords: { lat: 35.5717, lng: 135.1937 },
-    bookingUrl: 'https://www.klook.com/activity/141243/',
-    bookingLabel: 'Klook 투어(예약완료)',
+    bookingUrl: 'https://kr.trip.com/things-to-do/detail/57103566',
+    bookingLabel: 'Trip.com 투어(예약완료)',
   },
   {
     id: 'arashiyama',
