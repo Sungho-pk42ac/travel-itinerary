@@ -53,7 +53,7 @@ export const policies: PolicyItem[] = [
   {
     icon: '🎟️',
     title: '사전 예약 재확인',
-    detail: 'USJ 익스프레스 · 미슐랭 런치 · 카트 · 교토투어 집결지/시간.',
+    detail: 'USJ 오후권/익스프레스 · 야간 카트 · Klook 교토투어(하차지·짐 보관·집결시간) · 카덴쇼 체크인/석식 시간.',
   },
   {
     icon: '🔒',
